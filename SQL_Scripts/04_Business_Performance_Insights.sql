@@ -37,7 +37,7 @@ ORDER BY
 /*
 RESPUESTA:
 
-MES			  FACTURACION		UNIDADES VENDIDAS
+MES				FACTURACION		UNIDADES VENDIDAS
 July			30248969.3		420274
 August			37542454.97		530295
 September		34642640.69		489355
@@ -97,71 +97,71 @@ ORDER BY 2,1; -- Ordenado por Canal y por mes, desde Julio 2017 hasta Junio 2018
 /*
 RESPUESTA:
 
-FECHA                CANAL        TOTAL DE FACTURACION
-2017 07 Julio		    E-mail		    830789.75
-2017 08 Agosto		  E-mail		    530748.96
-2017 09 Septiembre	E-mail	    	494096.2
-2017 10 Octubre		  E-mail		    423403.69
-2017 11 Noviembre  	E-mail		    557065.13
-2017 12 Diciembre	  E-mail		    621299.7
-2018 01 Enero		    E-mail	    	46871.06
-2018 02 Febrero		  E-mail	    	1250019.69
-2018 03 Marzo		    E-mail	    	1341516.29
-2018 04 Abril		    E-mail		    732607.41
-2018 05 Mayo		    E-mail		    1000785.89
-2018 06 Junio		    E-mail		    708471.3
+FECHA					CANAL        TOTAL DE FACTURACION
+2017 07 Julio			E-mail			830789.75
+2017 08 Agosto			E-mail			530748.96
+2017 09 Septiembre		E-mail			494096.2
+2017 10 Octubre			E-mail			423403.69
+2017 11 Noviembre		E-mail			557065.13
+2017 12 Diciembre		E-mail			621299.7
+2018 01 Enero			E-mail			46871.06
+2018 02 Febrero			E-mail			1250019.69
+2018 03 Marzo			E-mail			1341516.29
+2018 04 Abril			E-mail			732607.41
+2018 05 Mayo			E-mail			1000785.89
+2018 06 Junio			E-mail			708471.3
 
-2018 01 Enero		    Fax			      398846.85
-2018 04 Abril		    Fax			      405543.97
-2018 05 Mayo		    Fax			      1604.67
+2018 01 Enero			Fax				398846.85
+2018 04 Abril			Fax				405543.97
+2018 05 Mayo			Fax				1604.67
 
-2017 07 Julio		    Mail		      14849
-2017 08 Agosto		  Mail		      10585.9
-2017 09 Septiembre	Mail		      16697.9
-2017 11 Noviembre	  Mail		      18058.3
-2017 12 Diciembre  	Mail		      22421
-2018 03 Marzo		    Mail		      18281.56
-2018 05 Mayo		    Mail	      	14983.94
-2018 06 Junio		    Mail		      12501.9
+2017 07 Julio			Mail			14849
+2017 08 Agosto			Mail			10585.9
+2017 09 Septiembre		Mail			16697.9
+2017 11 Noviembre		Mail			18058.3
+2017 12 Diciembre		Mail			22421
+2018 03 Marzo			Mail			18281.56
+2018 05 Mayo			Mail			14983.94
+2018 06 Junio			Mail			12501.9
 
-2017 07 Julio		    Sales visit	  1735340.79
-2017 08 Agosto		  Sales visit	  2059307.54
-2017 09 Septiembre	Sales visit	  1834088.92
-2017 10 Octubre		  Sales visit	  3688239.28
-2017 11 Noviembre	  Sales visit	  2263118.2
-2017 12 Diciembre	  Sales visit	  3072409.28
-2018 01 Enero		    Sales visit	  3839936.32
-2018 02 Febrero		  Sales visit	  4472393.61
-2018 03 Marzo		    Sales visit  	1804940.05
-2018 04 Abril		    Sales visit	  2440929.64
-2018 05 Mayo		    Sales visit	  4060740.3
-2018 06 Junio		    Sales visit	  2724015.46
+2017 07 Julio			Sales visit		1735340.79
+2017 08 Agosto			Sales visit		2059307.54
+2017 09 Septiembre		Sales visit		1834088.92
+2017 10 Octubre			Sales visit		3688239.28
+2017 11 Noviembre		Sales visit		2263118.2
+2017 12 Diciembre		Sales visit		3072409.28
+2018 01 Enero			Sales visit		3839936.32
+2018 02 Febrero			Sales visit		4472393.61
+2018 03 Marzo			Sales visit		1804940.05
+2018 04 Abril			Sales visit		2440929.64
+2018 05 Mayo			Sales visit		4060740.3
+2018 06 Junio			Sales visit		2724015.46
 
-2017 07 Julio		    Telephone	    1226619.29
-2017 08 Agosto		  Telephone  	  1434623.23
-2017 09 Septiembre	Telephone    	527090.13
-2017 10 Octubre		  Telephone    	1009339.46
-2017 11 Noviembre	  Telephone	    542557.47
-2017 12 Diciembre  	Telephone	    240891.48
-2018 01 Enero		    Telephone	    356840.39
-2018 02 Febrero		  Telephone	    521377.61
-2018 03 Marzo	    	Telephone	    1278588
-2018 04 Abril	    	Telephone	    1498352.4
-2018 05 Mayo		    Telephone	    1284276.19
-2018 06 Junio		    Telephone	    935424.28
+2017 07 Julio			Telephone		1226619.29
+2017 08 Agosto			Telephone		1434623.23
+2017 09 Septiembre		Telephone		527090.13
+2017 10 Octubre			Telephone		1009339.46
+2017 11 Noviembre		Telephone		542557.47
+2017 12 Diciembre		Telephone		240891.48
+2018 01 Enero			Telephone		356840.39
+2018 02 Febrero			Telephone		521377.61
+2018 03 Marzo			Telephone		1278588
+2018 04 Abril			Telephone		1498352.4
+2018 05 Mayo			Telephone		1284276.19
+2018 06 Junio			Telephone		935424.28
 
-2017 07 Julio		    Web			      26441370.47
-2017 08 Agosto		  Web			      33507189.34
-2017 09 Septiembre	Web			      31770667.54
-2017 10 Octubre		  Web			      29371592
-2017 11 Noviembre  	Web		      	33644984.59
-2017 12 Diciembre  	Web		      	31774637.36
-2018 01 Enero		    Web		      	27542735.8
-2018 02 Febrero		  Web		      	39158244.92
-2018 03 Marzo		    Web		      	39698142.43
-2018 04 Abril	    	Web		      	34720364.34
-2018 05 Mayo		    Web		      	37469874.26
-2018 06 Junio		    Web			      35473093.72
+2017 07 Julio			Web				26441370.47
+2017 08 Agosto			Web				33507189.34
+2017 09 Septiembre		Web				31770667.54
+2017 10 Octubre			Web				29371592
+2017 11 Noviembre		Web				33644984.59
+2017 12 Diciembre		Web				31774637.36
+2018 01 Enero			Web				27542735.8
+2018 02 Febrero			Web				39158244.92
+2018 03 Marzo			Web				39698142.43
+2018 04 Abril			Web				34720364.34
+2018 05 Mayo			Web				37469874.26
+2018 06 Junio			Web				35473093.72
 */
 
 
@@ -169,6 +169,7 @@ FECHA                CANAL        TOTAL DE FACTURACION
 -- 			3. Análisis de Canales de Venta
 
 -- Evaluacion de la eficiencia de cada canal en términos de volumen y facturación.
+
 
 SELECT 
   c.canal AS canal_venta,
@@ -185,13 +186,13 @@ ORDER BY ingresos_totales DESC;
 RESPUESTA:
 
 CANAL VENTA		TOTAL PEDIDOS	  TOTAL UNIDADES	INGRESOS TOTALES	TICKET PROMEDIO
-Web			    	19307			      13616971		    909471253.16		  47105.78
-Telephone		  1630		      	2891249			    157869786.05		  96852.63
-E-mail			  892			      	1651440			    87908957.07		  	98552.64
-Sales visit		538			      	1155195		    	67957531.43		  	126315.11
-Mail			    189			      	331113			    20761811.89			  109850.86
-Special			  65			      	104637		    	4514876.04			  69459.63
-Fax			    	100			      	45342			      2879547.51			  28795.48
+Web					19307			13616971			909471253.16		47105.78
+Telephone			1630			2891249				157869786.05		96852.63
+E-mail				892				1651440				87908957.07			98552.64
+Sales visit			538				1155195				67957531.43			126315.11
+Mail				189				331113				20761811.89			109850.86
+Special				65				104637				4514876.04			69459.63
+Fax					100				45342				2879547.51			28795.48
 */
 
 
