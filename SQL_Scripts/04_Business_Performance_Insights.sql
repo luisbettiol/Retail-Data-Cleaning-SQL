@@ -13,6 +13,7 @@ efectividad de canales y análisis de precios.
 
 -- El ciclo analizado es de Julio 2017 a Junio 2018. 
 -- Creacion de un CTE con un CASE WHEN para forzar el ordenamiento cronológico.
+
 WITH reporte_mensual AS (
     SELECT 
         MONTHNAME(fecha) AS mes, -- Extraccion del nombre del mes.
@@ -55,10 +56,10 @@ June		  39853506.66		619536
 
 -- 			2. Evolución mensual de la facturación por canal en los últimos 12 meses
 
---	- Creacion de un CTE con:
---		- Registros entre los ultimos 12 meses completos (de Julio de 2017 a Junio de 2018)
---		- Extraccion del mes de la fecha
---		- Agregacion de la facturacion por canal y por mes
+-- 		- Creacion de un CTE con:
+--			- Registros entre los ultimos 12 meses completos (de Julio de 2017 a Junio de 2018)
+--			- Extraccion del mes de la fecha
+--			- Agregacion de la facturacion por canal y por mes
 
 WITH tabla_facturacion_12_meses AS(
 SELECT 
@@ -168,6 +169,7 @@ FECHA                CANAL        TOTAL DE FACTURACION
 -- 			3. Análisis de Canales de Venta
 
 -- Evaluacion de la eficiencia de cada canal en términos de volumen y facturación.
+
 SELECT 
   c.canal AS canal_venta,
   COUNT(DISTINCT v.id_pedido) AS total_pedidos, -- Total de Pedidos por Canal de Venta.
@@ -197,6 +199,7 @@ Fax			    	100			      	45342			      2879547.51			  28795.48
 -- 			4. Los 20 productos con mayor margen ((precio - coste) / coste * 100) en cada Línea de Producto
 
 -- CTE con Calculo del Margen de todos los productos mas Row Number para dividir el ranking por linea de producto
+
 WITH tabla_rankeada_por_linea AS (
 SELECT 
 	id_prod,
@@ -215,101 +218,101 @@ ORDER BY linea , rank_por_linea;
 /*
 RESPUESTA
 
-ID			LINEA						          PRODUCTO					              	    MARGEN		RANKING
-4110	  Camping Equipment		    	TrailChef Cup						              330.59		1
-9110	  Camping Equipment		    	TrailChef Kettle					            160.75		2
-1110	  Camping Equipment		    	TrailChef Water Bag				           	137.91		3
-41110	  Camping Equipment		    	Flicker Lantern					          	  124.65		4
-20110	  Camping Equipment			    Hibernator Self-Inflating Mat	    	  124.38		5
-21110	  Camping Equipment			    Hibernator Pad						            119.38		6
-30110	  Camping Equipment		    	Firefly Lite						              118.81		7
-31110	  Camping Equipment			    Firefly Mapreader				          	  117.2		  8
-28110	  Camping Equipment		    	Canyon Mule Cooler			    	    	  114.08		9
-22110	  Camping Equipment		    	Hibernator Pillow				          	  110.87		10
-16110	  Camping Equipment		    	Star Peg						              	  106			  11
-8110	  Camping Equipment		    	TrailChef Double Flame			      	  102.36		12
-10110	  Camping Equipment		    	TrailChef Utensils					          99.28	  	13
-36110	  Camping Equipment			    EverGlow Single						            95.54		  14
-27110	  Camping Equipment			    Canyon Mule Extreme Backpack		      92.78	  	15
-40110	  Camping Equipment			    EverGlow Lamp					            	  88.41		  16
-2110	  Camping Equipment		    	TrailChef Canteen				          	  86.71		  17
-34110  	Camping Equipment		    	Firefly Extreme					          	  82.27		  18
-37110	  Camping Equipment		    	EverGlow Double					          	  81.39		  19
-29110  	Camping Equipment		    	Canyon Mule Carryall			          	78.48		  20
+ID			LINEA						          PRODUCTO					        MARGEN		RANKING
+4110	  	Camping Equipment		    	TrailChef Cup						    330.59		1
+9110	 	Camping Equipment		    	TrailChef Kettle					    160.75		2
+1110	  	Camping Equipment		    	TrailChef Water Bag				        137.91		3
+41110	  	Camping Equipment		    	Flicker Lantern					        124.65		4
+20110	  	Camping Equipment			    Hibernator Self-Inflating Mat	    	124.38		5
+21110	  	Camping Equipment			    Hibernator Pad						    119.38		6
+30110	  	Camping Equipment		    	Firefly Lite						    118.81		7
+31110	  	Camping Equipment			    Firefly Mapreader				        117.2		8
+28110	  	Camping Equipment		    	Canyon Mule Cooler			    	  	114.08		9
+22110	  	Camping Equipment		    	Hibernator Pillow				        110.87		10
+16110	  	Camping Equipment		    	Star Peg						        106			11
+8110	  	Camping Equipment		    	TrailChef Double Flame			      	102.36		12
+10110	  	Camping Equipment		    	TrailChef Utensils					    99.28	  	13
+36110	  	Camping Equipment			    EverGlow Single						    95.54		14
+27110	 	Camping Equipment			    Canyon Mule Extreme Backpack		    92.78	  	15
+40110	 	Camping Equipment			    EverGlow Lamp					        88.41		16
+2110	  	Camping Equipment		    	TrailChef Canteen				        86.71		17
+34110		Camping Equipment		    	Firefly Extreme					        82.27		18
+37110	 	Camping Equipment		    	EverGlow Double					        81.39		19
+29110  		Camping Equipment		    	Canyon Mule Carryall			        78.48		20
 
-115110	Golf Equipment			    	Course Pro Gloves					            321.65		1
-112110	Golf Equipment				    Course Pro Golf and Tee Set		    	  269.44		2
-114110	Golf Equipment			    	Course Pro Golf Bag					          175.16		3
-109110	Golf Equipment			    	Course Pro Putter				          	  140.87		4
-110110	Golf Equipment			    	Blue Steel Putter				          	  120.75		5
-107110	Golf Equipment			    	Lady Hailstorm Titanium Woods Set	    113.19		6
-113110	Golf Equipment			    	Course Pro Umbrella				        	  110.69		7
-101110	Golf Equipment			    	Hailstorm Steel Irons				          107.94		8
-106110	Golf Equipment			    	Hailstorm Steel Woods Set		      	  107.71		9
-108110	Golf Equipment				    Lady Hailstorm Steel Woods Set	  	  102.8		  10
-111110	Golf Equipment				    Blue Steel Max Putter				          102.02		11
-104110	Golf Equipment				    Lady Hailstorm Titanium Irons		      101.15		12
-102110	Golf Equipment			    	Hailstorm Titanium Irons		        	99.01		  13
-105110	Golf Equipment				    Hailstorm Titanium Woods Set	      	95.94		  14
-103110	Golf Equipment				    Lady Hailstorm Steel Irons		      	91.8		  15
+115110		Golf Equipment			    	Course Pro Gloves					    321.65		1
+112110		Golf Equipment				    Course Pro Golf and Tee Set		    	269.44		2
+114110		Golf Equipment			    	Course Pro Golf Bag					    175.16		3
+109110		Golf Equipment			    	Course Pro Putter				        140.87		4
+110110		Golf Equipment			    	Blue Steel Putter				        120.75		5
+107110		Golf Equipment			    	Lady Hailstorm Titanium Woods Set	    113.19		6
+113110		Golf Equipment			    	Course Pro Umbrella				       	110.69		7
+101110		Golf Equipment			    	Hailstorm Steel Irons				    107.94		8
+106110		Golf Equipment			    	Hailstorm Steel Woods Set		      	107.71		9
+108110		Golf Equipment				    Lady Hailstorm Steel Woods Set	  	  	102.8		10
+111110		Golf Equipment				    Blue Steel Max Putter				    102.02		11
+104110		Golf Equipment				    Lady Hailstorm Titanium Irons		    101.15		12
+102110		Golf Equipment			    	Hailstorm Titanium Irons		        99.01		13
+105110		Golf Equipment				    Hailstorm Titanium Woods Set	      	95.94		14
+103110		Golf Equipment				    Lady Hailstorm Steel Irons		      	91.8		15
 
-55110	  Mountaineering Equipment	Firefly Rechargeable Battery	      	153.97		1
-54110	  Mountaineering Equipment	Firefly Charger					            	136.99		2
-49110	  Mountaineering Equipment	Granite Signal Mirror			          	113.32		3
-56110  	Mountaineering Equipment	Granite Chalk Bag					            111.02		4
-52110	  Mountaineering Equipment	Granite Pulley					            	107.08		5
-57110  	Mountaineering Equipment	Granite Ice						              	105.29		6
-61110	  Mountaineering Equipment	Granite Axe						               	104.92		7
-50110  	Mountaineering Equipment	Granite Carabiner				            	104.08		8
-48110	  Mountaineering Equipment	Husky Harness Extreme			          	103.97		9
-51110	  Mountaineering Equipment	Granite Belay					              	103.08		10
-60110	  Mountaineering Equipment	Granite Grip					              	102.22		11
-53110	  Mountaineering Equipment	Firefly Climbing Lamp		      		    85.4		  12
-62110	  Mountaineering Equipment	Granite Extreme					        	    71.97		  13
-59110	  Mountaineering Equipment	Granite Shovel					        	    61.83		  14
-42110	  Mountaineering Equipment	Husky Rope 50						              58.56		  15
-45110	  Mountaineering Equipment	Husky Rope 200					        	    55.25		  16
-44110	  Mountaineering Equipment	Husky Rope 100					         	    52.25		  17
-43110	  Mountaineering Equipment	Husky Rope 60						              50.19		  18
-47110	  Mountaineering Equipment	Husky Harness					          	    48.5		  19
-46110	  Mountaineering Equipment	Granite Climbing Helmet			    	    40.85		  20
+55110		Mountaineering Equipment		Firefly Rechargeable Battery	      	153.97		1
+54110		Mountaineering Equipment		Firefly Charger					        136.99		2
+49110		Mountaineering Equipment		Granite Signal Mirror			        113.32		3
+56110	 	Mountaineering Equipment		Granite Chalk Bag					    111.02		4
+52110	  	Mountaineering Equipment		Granite Pulley					        107.08		5
+57110  		Mountaineering Equipment		Granite Ice						        105.29		6
+61110	 	Mountaineering Equipment		Granite Axe						        104.92		7
+50110  		Mountaineering Equipment		Granite Carabiner				        104.08		8
+48110	  	Mountaineering Equipment		Husky Harness Extreme			        103.97		9
+51110	  	Mountaineering Equipment		Granite Belay					        103.08		10
+60110	  	Mountaineering Equipment		Granite Grip					        102.22		11
+53110	  	Mountaineering Equipment		Firefly Climbing Lamp		      		85.4		12
+62110	  	Mountaineering Equipment		Granite Extreme					        71.97		13
+59110	  	Mountaineering Equipment		Granite Shovel					       	61.83		14
+42110	  	Mountaineering Equipment		Husky Rope 50						    58.56		15
+45110	  	Mountaineering Equipment		Husky Rope 200					       	55.25		16
+44110	  	Mountaineering Equipment		Husky Rope 100					        52.25		17
+43110	  	Mountaineering Equipment		Husky Rope 60						    50.19		18
+47110	  	Mountaineering Equipment		Husky Harness					        48.5		19
+46110	  	Mountaineering Equipment		Granite Climbing Helmet			    	40.85		20
 
-88110	  Outdoor Protection		  	BugShield Lotion Lite				          272.34		1
-87110	  Outdoor Protection		  	BugShield Spray					            	228.42		2
-86110	  Outdoor Protection		  	BugShield Natural				          	  222.58		3
-89110	  Outdoor Protection		  	BugShield Lotion				            	200.43		4
-90110	  Outdoor Protection		  	BugShield Extreme				            	189.26		5
-93110	  Outdoor Protection		  	Sun Shelter 15						            178.77		6
-99110	  Outdoor Protection		  	Aloe Relief							              172.4		  7
-94110	  Outdoor Protection		  	Sun Shelter 30						            170.27		8
-91110	  Outdoor Protection		  	Sun Blocker						            	  156.41		9
-92110	  Outdoor Protection		  	Sun Shelter Stick				          	  155.1		  10
-96110	  Outdoor Protection		  	Compact Relief Kit					          154.71		11
-100110	Outdoor Protection	  	  Insect Bite Relief					          117.39		12
-95110	  Outdoor Protection		  	Sun Shield							              117.39		13
-98110	  Outdoor Protection		  	Calamine Relief					            	112.01		14
-97110  	Outdoor Protection		  	Deluxe Family Relief Kit		        	109.83		15
+88110	  	Outdoor Protection		  		BugShield Lotion Lite				    272.34		1
+87110	  	Outdoor Protection		  		BugShield Spray					        228.42		2
+86110	  	Outdoor Protection		  		BugShield Natural				        222.58		3
+89110	  	Outdoor Protection		  		BugShield Lotion				        200.43		4
+90110	  	Outdoor Protection		  		BugShield Extreme				        189.26		5
+93110	  	Outdoor Protection		  		Sun Shelter 15						    178.77		6
+99110	  	Outdoor Protection		  		Aloe Relief							    172.4		7
+94110	  	Outdoor Protection		  		Sun Shelter 30						    170.27		8
+91110	  	Outdoor Protection		  		Sun Blocker						        156.41		9
+92110	  	Outdoor Protection		  		Sun Shelter Stick				        155.1		10
+96110	  	Outdoor Protection		  		Compact Relief Kit					    154.71		11
+100110		Outdoor Protection	  	  		Insect Bite Relief					    117.39		12
+95110	  	Outdoor Protection		  		Sun Shield							    117.39		13
+98110	  	Outdoor Protection		  		Calamine Relief					        112.01		14
+97110  		Outdoor Protection		  		Deluxe Family Relief Kit		      	109.83		15
 
-134140	Personal Accessories	  	Pocket Gizmo					              	172.69		1
-67110	  Personal Accessories		  Mountain Man Extreme		          		153.36		2
-134120	Personal Accessories		  Pocket Gizmo						              152.42		3
-134110	Personal Accessories	  	Pocket Gizmo					              	150.51		4
-134130	Personal Accessories	  	Pocket Gizmo					              	145.71		5
-131130	Personal Accessories	  	Max Gizmo							                137.54		6
-68240	  Personal Accessories	  	Polar Sun					                		137.39		7
-68220	  Personal Accessories		  Polar Sun					                		137.39		8
-68190	  Personal Accessories		  Polar Sun					                		137.39		9
-68230	  Personal Accessories		  Polar Sun					                 		137.3		  10
-68200	  Personal Accessories		  Polar Sun					                		137.21		11
-68110	  Personal Accessories		  Polar Sun					                		137.12		12
-68120	  Personal Accessories		  Polar Sun					                		137.12		13
-68250	  Personal Accessories		  Polar Sun					                		137.12		14
-71110	  Personal Accessories		  Polar Wave				              			133.5		  15
-69120	  Personal Accessories	  	Polar Ice						                	121.37		16
-69110	  Personal Accessories		  Polar Ice						                	119.86		17
-133110	Personal Accessories		  Opera Vision					              	118.25		18
-66110	  Personal Accessories		  Mountain Man Combination		        	117.8		  19
-131110	Personal Accessories		  Max Gizmo						                	116.58		20
+134140		Personal Accessories	  		Pocket Gizmo					        172.69		1
+67110	  	Personal Accessories		  	Mountain Man Extreme		          	153.36		2
+134120		Personal Accessories		  	Pocket Gizmo						    152.42		3
+134110		Personal Accessories	  		Pocket Gizmo					        150.51		4
+134130		Personal Accessories	  		Pocket Gizmo					        145.71		5
+131130		Personal Accessories	  		Max Gizmo							    137.54		6
+68240	  	Personal Accessories	  		Polar Sun					            137.39		7
+68220	  	Personal Accessories		  	Polar Sun					            137.39		8
+68190	  	Personal Accessories		  	Polar Sun					            137.39		9
+68230	  	Personal Accessories		  	Polar Sun					            137.3		10
+68200	  	Personal Accessories		  	Polar Sun					            137.21		11
+68110	  	Personal Accessories		  	Polar Sun					            137.12		12
+68120	  	Personal Accessories		  	Polar Sun					            137.12		13
+68250	  	Personal Accessories		  	Polar Sun					            137.12		14
+71110	  	Personal Accessories		  	Polar Wave				              	133.5		15
+69120	  	Personal Accessories	  		Polar Ice						        121.37		16
+69110	  	Personal Accessories		  	Polar Ice						        119.86		17
+133110		Personal Accessories		  	Opera Vision					        118.25		18
+66110	  	Personal Accessories		  	Mountain Man Combination		        117.8		19
+131110		Personal Accessories		  	Max Gizmo						        116.58		20
 */
 
 
@@ -320,6 +323,7 @@ ID			LINEA						          PRODUCTO					              	    MARGEN		RANKING
 CTE con Calculo de Porcentaje de Descuento que se le esta aplicando a cada producto
 (con un AVG porque no en todas las ventas se aplico el mismo descuento, asi conseguimos una media del descuento aplicado)
 */
+
 WITH tabla_de_descuentos AS (
 	SELECT 
 		id_prod,
@@ -348,24 +352,24 @@ ID		    DESCUENTO	  PERCENTIL
 8110	    8.31		    0.9098360655737705
 36110    	8.83		    0.9139344262295082
 4110	    9.46	    	0.9180327868852459
-115110	  9.95		    0.9221311475409836
+115110	  	9.95		    0.9221311475409836
 80110	    10.07	    	0.9262295081967213
 20110	    10.96	    	0.930327868852459
 2110	    11.08	    	0.9344262295081968
 1110	    11.24		    0.9385245901639344
 87110	    11.48		    0.9426229508196722
 21110    	11.76		    0.9467213114754098
-110110	  12.03	    	0.9508196721311475
-109110	  12.32	    	0.9549180327868853
+110110	 	 12.03	    	0.9508196721311475
+109110	  	12.32	    	0.9549180327868853
 31110	    12.5		    0.9590163934426229
 9110	    12.59		    0.9631147540983607
-111110	  14.37		    0.9672131147540983
+111110	  	14.37		    0.9672131147540983
 81110	    14.85		    0.9713114754098361
 6110	    14.98		    0.9754098360655737
 90110	    15.6		    0.9795081967213115
 23110	    16.34	    	0.9836065573770492
-112110	  16.86	    	0.9877049180327869
-113110	  18.45	    	0.9918032786885246
+112110	  	16.86	    	0.9877049180327869
+113110	  	18.45	    	0.9918032786885246
 5110	    25.32		    0.9959016393442623
 94110	    27.64	    	1
 */
@@ -375,6 +379,7 @@ ID		    DESCUENTO	  PERCENTIL
 -- 			6. ¿Con qué productos necesitaríamos quedarnos para mantener el 90% de la facturación actual?
 
 -- Creacion de CTE para agregar por producto y obtener el total facturado por cada producto, ordenado desde el de Mayor Facturacion hasta el Menor
+
 WITH tabla_total_por_producto AS(
 SELECT
 	id_prod,
@@ -417,116 +422,116 @@ RESPUESTA:
 De los 244 Productos que se ofrecen, solo con 111 (los mencionado a continuacion) se obtiene el 90% de la facturacion
 
 ID		    PRODUCTO								            PORCENTAJE ACUMULADO
-105110	  Hailstorm Titanium Woods Set	  		4.54
+105110	 	Hailstorm Titanium Woods Set	  					4.54
 11110	    Star Lite						             		8.25
-144180	  TX										              11.79
-102110  	Hailstorm Titanium Irons			    	15.32
-106110  	Hailstorm Steel Woods Set			     	18.3
-25110	    Canyon Mule Weekender Backpack			20.92
-107110  	Lady Hailstorm Titanium Woods Set		23.47
-26110	    Canyon Mule Journey Backpack			  25.93
-101110  	Hailstorm Steel Irons					      28.01
-104110	  Lady Hailstorm Titanium Irons		  	30.03
-109110	  Course Pro Putter						        31.88
-145170	  Legend									            33.72
-19110	    Hibernator Extreme					      	35.56
-108110	  Lady Hailstorm Steel Woods Set			37.35
-13110	    Star Gazer 2						          	39.08
-103110	  Lady Hailstorm Steel Irons		  		40.5
-44110	    Husky Rope 100						        	41.9
-15110	    Star Gazer 6							          43.23
-111110  	Blue Steel Max Putter			      		44.52
-62110	    Granite Extreme						        	45.77
-48110	    Husky Harness Extreme			      		46.93
-45110	    Husky Rope 200						        	48.06
+144180	  	TX										            11.79
+102110  	Hailstorm Titanium Irons			    			15.32
+106110  	Hailstorm Steel Woods Set			     			18.3
+25110	    Canyon Mule Weekender Backpack						20.92
+107110  	Lady Hailstorm Titanium Woods Set					23.47
+26110	    Canyon Mule Journey Backpack			  			25.93
+101110  	Hailstorm Steel Irons					      		28.01
+104110	  	Lady Hailstorm Titanium Irons		  				30.03
+109110	  	Course Pro Putter						        	31.88
+145170	  	Legend									            33.72
+19110	    Hibernator Extreme					      			35.56
+108110	  	Lady Hailstorm Steel Woods Set						37.35
+13110	    Star Gazer 2						          		39.08
+103110	  	Lady Hailstorm Steel Irons		  					40.5
+44110	    Husky Rope 100						        		41.9
+15110	    Star Gazer 6							         	43.23
+111110  	Blue Steel Max Putter			      				44.52
+62110	    Granite Extreme						        		45.77
+48110	    Husky Harness Extreme			      				46.93
+45110	    Husky Rope 200						        		48.06
 128140  	Inferno									            49.13
-27110	    Canyon Mule Extreme Backpack		  	50.19
-29110	    Canyon Mule Carryall					      51.25
-129130	  Infinity							            	52.23
-126140	  Dante								              	53.13
-18110    	Hibernator					          			54
-61110	    Granite Axe							          	54.84
+27110	    Canyon Mule Extreme Backpack		  				50.19
+29110	    Canyon Mule Carryall					      		51.25
+129130	  	Infinity							            	52.23
+126140	  	Dante								              	53.13
+18110    	Hibernator					          				54
+61110	    Granite Axe							          		54.84
 12110	    Star Dome								            55.67
-46110	    Granite Climbing Helmet				    	56.47
-147110  	Zone									              57.26
-110110	  Blue Steel Putter				        		58.04
-57110	    Granite Ice						          		58.8
-124190	  Cat Eye									            59.53
-114110	  Course Pro Golf Bag		 		      		60.26
-40110	    EverGlow Lamp						          	60.98
-125110	  Venue									              61.7
-126110	  Dante								              	62.36
-17110	    Hibernator Lite						        	63.03
-42110	    Husky Rope 50					          		63.64
-127130	  Fairway								            	64.25
-21110	    Hibernator Pad						        	64.84
-75110	    Edge Extreme						          	65.43
-54110    	Firefly Charger						        	65.97
-3110	    TrailChef Kitchen Kit				      	66.5
-23110	    Hibernator Camp Cot					      	67.02
-20110    	Hibernator Self - Inflating Mat			67.53
-51110    	Granite Belay						          	68.05
-9110	    TrailChef Kettle			        			68.56
-128200	  Inferno							            		69.06
-143110	  Trendi							            		69.56
-147180	  Zone						              			70.06
-14110	    Star Gazer 3				          			70.55
-58110	    Granite Hammer					        		71.03
-24110	    Canyon Mule Climber Backpack		  	71.5
-5110	    TrailChef Cook Set				      		71.97
-151110	  Astro Pilot							          	72.44
-147170	  Zone									              72.89
-28110	    Canyon Mule Cooler		      				73.35
-149140  	Retro								 	              73.8
-43110    	Husky Rope 60				          			74.25
+46110	    Granite Climbing Helmet				    			56.47
+147110  	Zone									            57.26
+110110	  	Blue Steel Putter				        			58.04
+57110	    Granite Ice						          			58.8
+124190	  	Cat Eye									            59.53
+114110	  	Course Pro Golf Bag		 		      				60.26
+40110	    EverGlow Lamp						          		60.98
+125110	  	Venue									            61.7
+126110	  	Dante								              	62.36
+17110	    Hibernator Lite						        		63.03
+42110	    Husky Rope 50					          			63.64
+127130	  	Fairway								            	64.25
+21110	    Hibernator Pad						        		64.84
+75110	    Edge Extreme						          		65.43
+54110    	Firefly Charger						        		65.97
+3110	    TrailChef Kitchen Kit				      			66.5
+23110	    Hibernator Camp Cot					      			67.02
+20110    	Hibernator Self - Inflating Mat						67.53
+51110    	Granite Belay						          		68.05
+9110	    TrailChef Kettle			        				68.56
+128200	  	Inferno							            		69.06
+143110	  	Trendi							            		69.56
+147180	  	Zone						              			70.06
+14110	    Star Gazer 3				          				70.55
+58110	    Granite Hammer					        			71.03
+24110	    Canyon Mule Climber Backpack		  				71.5
+5110	    TrailChef Cook Set				      				71.97
+151110	  	Astro Pilot							          		72.44
+147170	  	Zone									            72.89
+28110	    Canyon Mule Cooler		      						73.35
+149140  	Retro								 	            73.8
+43110    	Husky Rope 60				          				74.25
 32110	    Firefly 2						            		74.7
-129150	  Infinity						            		75.14
-47110	    Husky Harness						          	75.58
-85110	    Glacier GPS Extreme			      			76.01
-132120	  Maximus									            76.45
-52110	    Granite Pulley				        			76.87
-132110	  Maximus								            	77.29
-132170	  Maximus								            	77.71
-113110	  Course Pro Umbrella				      		78.12
-129180	  Infinity								            78.49
+129150	  	Infinity						            		75.14
+47110	    Husky Harness						          		75.58
+85110	    Glacier GPS Extreme			      					76.01
+132120	  	Maximus									            76.45
+52110	    Granite Pulley				        				76.87
+132110	  	Maximus								            	77.29
+132170	  	Maximus								            	77.71
+113110	  	Course Pro Umbrella				      				78.12
+129180	  	Infinity								            78.49
 147120  	Zone							              		78.86
-147130	  Zone								              	79.21
-70240	    Polar Sports						          	79.56
-50110	    Granite Carabiner					         	79.91
-148120	  Hawk Eye								            80.25
-8110	    TrailChef Double Flame				    	80.59
-55110    	Firefly Rechargeable Battery		  	80.93
-128130	  Inferno								            	81.26
+147130	  	Zone								              	79.21
+70240	    Polar Sports						          		79.56
+50110	    Granite Carabiner					         		79.91
+148120	  	Hawk Eye								            80.25
+8110	    TrailChef Double Flame				    			80.59
+55110    	Firefly Rechargeable Battery		  				80.93
+128130	  	Inferno								            	81.26
 69110	    Polar Ice							            	81.59
-152110	  Sky Pilot							            	81.91
-112110	  Course Pro Golf and Tee Set		  		82.24
-145130	  Legend								            	82.55
-128150	  Inferno								            	82.87
-148130	  Hawk Eye							            	83.18
-31110	    Firefly Mapreader				        		83.48
-125120	  Venue							              		83.78
-136140	  Sam									              	84.08
-6110	    TrailChef Deluxe Cook Set		    		84.38
+152110	  	Sky Pilot							            	81.91
+112110	  	Course Pro Golf and Tee Set		  					82.24
+145130	  	Legend								            	82.55
+128150	  	Inferno								            	82.87
+148130	  	Hawk Eye							            	83.18
+31110	    Firefly Mapreader				        			83.48
+125120	  	Venue							              		83.78
+136140	  	Sam									              	84.08
+6110	    TrailChef Deluxe Cook Set		    				84.38
 79110	    Seeker 50								            84.68
-128210	  Inferno							            		84.96
-135120	  Ranger Vision						          	85.24
-84110    	Glacier GPS						          		85.52
-132140	  Maximus								            	85.79
-53110	    Firefly Climbing Lamp			      		86.07
-127110	  Fairway								            	86.34
-59110	    Granite Shovel					         		86.61
-63140    	Mountain Man Analog				      		86.88
-60110	    Granite Grip						          	87.15
-97110	    Deluxe Family Relief Kit		    		87.41
-147160	  Zone								              	87.67
-7110	    TrailChef Single Flame		    			87.92
-22110    	Hibernator Pillow						        88.17
-122140	  Bella									              88.41
-82110	    Glacier Basic					          		88.65
-126130	  Dante									              88.89
-129110	  Infinity						            		89.12
+128210	  	Inferno							            		84.96
+135120	  	Ranger Vision						          		85.24
+84110    	Glacier GPS						          			85.52
+132140	  	Maximus								            	85.79
+53110	    Firefly Climbing Lamp			      				86.07
+127110	  	Fairway								            	86.34
+59110	    Granite Shovel					         			86.61
+63140    	Mountain Man Analog				      				86.88
+60110	    Granite Grip						          		87.15
+97110	    Deluxe Family Relief Kit		    				87.41
+147160	  	Zone								              	87.67
+7110	    TrailChef Single Flame		    					87.92
+22110    	Hibernator Pillow						        	88.17
+122140	  	Bella									            88.41
+82110	    Glacier Basic					          			88.65
+126130	  	Dante									            88.89
+129110	  	Infinity						            		89.12
 68250	    Polar Sun							            	89.35
-115110	  Course Pro Gloves			        			89.58
+115110	  	Course Pro Gloves			        				89.58
 130110	  Lux								              		89.8
 */
 
@@ -535,6 +540,7 @@ ID		    PRODUCTO								            PORCENTAJE ACUMULADO
 -- 			6.1. Productos de los que se puede prescindir y mantener el 90% de la facturacion
 
 -- Utilizando la misma consulta anterior, filtrando esta vez a los productos que se encuentran entre 90-100 
+
 WITH tabla_total_por_producto AS(
 SELECT
 	id_prod,
@@ -563,139 +569,139 @@ WHERE pct_del_total > 90 -- Filtro para los Mayores a 90
 RESPUESTA:
 Se puede prescindir de los siguientes productos e igual mantener el 90% de la facturacion total
 
-143120	Trendi
-148110	Hawk Eye
-63130	  Mountain Man Analog
-89110	  BugShield Lotion
-141110	Trail Scout
-145160	Legend
-90110	  BugShield Extreme
-144150	TX
-65110	  Mountain Man Deluxe
-149130	Retro
-68230	  Polar Sun
-36110	  EverGlow Single
-78110	  Seeker 35
-142110	Trail Star
-124110	Cat Eye
-39110	  EverGlow Butane
-154150	Kodiak
-1110	  TrailChef Water Bag
-136130	Sam
-69120	  Polar Ice
-81110	  Seeker Mini
-73110  	Single Edge
-135130	Ranger Vision
-35110	  Firefly Multi-light
-135110	Ranger Vision
-49110	  Granite Signal Mirror
-68110	  Polar Sun
-63110	  Mountain Man Analog
-124140	Cat Eye
-70110  	Polar Sports
-132150	Maximus
-67110  	Mountain Man Extreme
-34110  	Firefly Extreme
-38110  	EverGlow Kerosene
-88110	  BugShield Lotion Lite
-123140	Capri
-147150	Zone
-147140	Zone
-80110	  Seeker Extreme
-10110	  TrailChef Utensils
-64110	  Mountain Man Digital
-95110	  Sun Shield
-56110	  Granite Chalk Bag
-144170	TX
-68120	  Polar Sun
-131120	Max Gizmo
-94110	  Sun Shelter 30
-71110	  Polar Wave
-76110	  Bear Edge
-130130	Lux
-93110	  Sun Shelter 15
-133110	Opera Vision
-68200	  Polar Sun
-72110	  Polar Extreme
-149150	Retro
-140110	Trail Master
-37110	  EverGlow Double
-144110	TX
-96110	  Compact Relief Kit
-41110	  Flicker Lantern
-124160	Cat Eye
-86110	  BugShield Natural
-33110	  Firefly 4
-154130	Kodiak
-83110  	Glacier Deluxe
-125150	Venue
-124180	Cat Eye
-92110	  Sun Shelter Stick
-30110	  Firefly Lite
-149120	Retro
-87110	  BugShield Spray
-70200	  Polar Sports
-122120	Bella
-70160	  Polar Sports
-4110	  TrailChef Cup
-144120	TX
-134120	Pocket Gizmo
-131110	Max Gizmo
-124120	Cat Eye
-65120	  Mountain Man Deluxe
-66110	  Mountain Man Combination
-123120	Capri
-126150	Dante
-123110	Capri
-154110	Kodiak
-68190	  Polar Sun
-154120	Kodiak
-2110	  TrailChef Canteen
-16110	  Star Peg
-70140	  Polar Sports
-123150	Capri
-74110	  Double Edge
-143130	Trendi
-68220  	Polar Sun
-68240	  Polar Sun
-143140	Trendi
-123160	Capri
-127150	Fairway
-124130	Cat Eye
-91110	  Sun Blocker
-77110	  Bear Survival Edge
-144200	TX
-153110	Auto Pilot
-129170	Infinity
-70120	  Polar Sports
-99110	  Aloe Relief
-149160	Retro
-146110	Zodiak
-125140	Venue
-146140	Zodiak
-124150	Cat Eye
-100110	Insect Bite Relief
-129160	Infinity
-146130	Zodiak
-134130	Pocket Gizmo
-128160	Inferno
-147190	Zone
-146120	Zodiak
-132160	Maximus
-144140	TX
-145110	Legend
-128190	Inferno
-151120	Astro Pilot
-134140	Pocket Gizmo
-136150	Sam
-98110	  Calamine Relief
-145180	Legend
-126120	Dante
-136110	Sam
-131130	Max Gizmo
-144160	TX
-130140	Lux
-125160	Venue
+143120		Trendi
+148110		Hawk Eye
+63130	 	Mountain Man Analog
+89110	  	BugShield Lotion
+141110		Trail Scout
+145160		Legend
+90110	  	BugShield Extreme
+144150		TX
+65110	 	Mountain Man Deluxe
+149130		Retro
+68230	  	Polar Sun
+36110	  	EverGlow Single
+78110	  	Seeker 35
+142110		Trail Star
+124110		Cat Eye
+39110	 	EverGlow Butane
+154150		Kodiak
+1110	  	TrailChef Water Bag
+136130		Sam
+69120	  	Polar Ice
+81110	  	Seeker Mini
+73110  		Single Edge
+135130		Ranger Vision
+35110	  	Firefly Multi-light
+135110		Ranger Vision
+49110	  	Granite Signal Mirror
+68110	  	Polar Sun
+63110	  	Mountain Man Analog
+124140		Cat Eye
+70110  		Polar Sports
+132150		Maximus
+67110  		Mountain Man Extreme
+34110  		Firefly Extreme
+38110  		EverGlow Kerosene
+88110	  	BugShield Lotion Lite
+123140		Capri
+147150		Zone
+147140		Zone
+80110	  	Seeker Extreme
+10110	  	TrailChef Utensils
+64110	  	Mountain Man Digital
+95110	  	Sun Shield
+56110	  	Granite Chalk Bag
+144170		TX
+68120	  	Polar Sun
+131120		Max Gizmo
+94110	  	Sun Shelter 30
+71110	  	Polar Wave
+76110	  	Bear Edge
+130130		Lux
+93110	  	Sun Shelter 15
+133110		Opera Vision
+68200	  	Polar Sun
+72110	  	Polar Extreme
+149150		Retro
+140110		Trail Master
+37110	  	EverGlow Double
+144110		TX
+96110	  	Compact Relief Kit
+41110	  	Flicker Lantern
+124160		Cat Eye
+86110	  	BugShield Natural
+33110	  	Firefly 4
+154130		Kodiak
+83110  		Glacier Deluxe
+125150		Venue
+124180		Cat Eye
+92110	  	Sun Shelter Stick
+30110	  	Firefly Lite
+149120		Retro
+87110	  	BugShield Spray
+70200	  	Polar Sports
+122120		Bella
+70160	  	Polar Sports
+4110	  	TrailChef Cup
+144120		TX
+134120		Pocket Gizmo
+131110		Max Gizmo
+124120		Cat Eye
+65120	  	Mountain Man Deluxe
+66110	  	Mountain Man Combination
+123120		Capri
+126150		Dante
+123110		Capri
+154110		Kodiak
+68190	  	Polar Sun
+154120		Kodiak
+2110	  	TrailChef Canteen
+16110	  	Star Peg
+70140	  	Polar Sports
+123150		Capri
+74110	  	Double Edge
+143130		Trendi
+68220  		Polar Sun
+68240	  	Polar Sun
+143140		Trendi
+123160		Capri
+127150		Fairway
+124130		Cat Eye
+91110	  	Sun Blocker
+77110	  	Bear Survival Edge
+144200		TX
+153110		Auto Pilot
+129170		Infinity
+70120	  	Polar Sports
+99110	  	Aloe Relief
+149160		Retro
+146110		Zodiak
+125140		Venue
+146140		Zodiak
+124150		Cat Eye
+100110		Insect Bite Relief
+129160		Infinity
+146130		Zodiak
+134130		Pocket Gizmo
+128160		Inferno
+147190		Zone
+146120		Zodiak
+132160		Maximus
+144140		TX
+145110		Legend
+128190		Inferno
+151120		Astro Pilot
+134140		Pocket Gizmo
+136150		Sam
+98110	  	Calamine Relief
+145180		Legend
+126120		Dante
+136110		Sam
+131130		Max Gizmo
+144160		TX
+130140		Lux
+125160		Venue
 */
 
 
@@ -719,6 +725,7 @@ Golf Equipment
 -- 			7.1. La Contribución (en porcentaje) de cada Línea de Producto al total de facturación
 
 -- Creacion del primer CTE con el calculo del total de facturacion por linea de producto
+
 WITH tabla_facturacion_por_lineas AS (
 SELECT
 	p.linea,
@@ -747,12 +754,12 @@ FROM 	tabla_total_facturacion_por_lineas
 /*
 RESPUESTA:
 
-LINEA PRODUCTOS				  TOTAL FACTURACION POR LINEA		TOTAL FACTURACION		% POR LINEA DEL TOTAL
-Personal Accessories			410329373.18					      1251363763.15				32.79
-Camping Equipment				  334691880.39				       	1251363763.15				26.75
-Golf Equipment					  331781144.33			      		1251363763.15				26.51
-Mountaineering Equipment	156860394.34				      	1251363763.15				12.54
-Outdoor Protection				17700970.91						      1251363763.15				1.41
+LINEA PRODUCTOS				  	TOTAL FACTURACION POR LINEA			TOTAL FACTURACION		% POR LINEA DEL TOTAL
+Personal Accessories			410329373.18					    1251363763.15				32.79
+Camping Equipment				334691880.39				       	1251363763.15				26.75
+Golf Equipment					331781144.33			      		1251363763.15				26.51
+Mountaineering Equipment		156860394.34				      	1251363763.15				12.54
+Outdoor Protection				17700970.91						    1251363763.15				1.41
 
 Personal Accessories es la liena que mas contribuye al total de la Facturacion
 con un 32.79% de la facturacion total
@@ -773,6 +780,7 @@ Se podria prescindir de la linea 'Outdoor Protection" debido a que solo represne
 -- 			8. Dentro de la línea que más facture ¿hay algún producto concreto que esté en tendencia? (Definimos tendencia como el crecimiento de Q2-2018 sobre Q1-2018)
 
 -- Creacion del Primer CTE con un filtro de la fecha para tener los primeros 6 meses del ano, (primer trimestre y segundo trimestre)
+
 WITH tabla_facturacion AS (
 SELECT
 	v.fecha,
@@ -837,68 +845,68 @@ RESPUESTA
 Todos los Productos mencionados en esta lista se encuentran en Tendencia debido a que como se puede observar, la Facturacion en el Q2 fue Mayor a la del Q1
 
 PRODUCTO			      	ID		  Q1		  Q2
-Mountain Man Analog		63110	  108400	152523
-Mountain Man Digital	64110	  72804  	100209
-Mountain Man Deluxe		65120	  96558  	138361
-Mountain Man Extreme	67110	  214452	246009
+Mountain Man Analog			63110	  108400	152523
+Mountain Man Digital		64110	  72804  	100209
+Mountain Man Deluxe			65120	  96558  	138361
+Mountain Man Extreme		67110	  214452	246009
 Polar Sun			      	68120	  233335	305045
-Polar Sun				      68190	  85711  	93760
-Polar Sun				      68200	  116854	139803
-Polar Sun				      68240	  76311  	90819
-Polar Sun				      68250	  384012	541104
-Polar Ice			    	  69110	  449387	528898
-Polar Ice				      69120	  305780	371942
-Polar Sports		  	  70120	  52736  	58790
-Polar Sports		    	70140	  97453	  154688
+Polar Sun				    68190	  85711  	93760
+Polar Sun				    68200	  116854	139803
+Polar Sun				    68240	  76311  	90819
+Polar Sun				    68250	  384012	541104
+Polar Ice			    	69110	  449387	528898
+Polar Ice				    69120	  305780	371942
+Polar Sports		  	  	70120	  52736  	58790
+Polar Sports		    	70140	  97453	  	154688
 Polar Sports		    	70160	  201610	226962
-Polar Sports		    	70200  	164830	179052
+Polar Sports		    	70200     164830	179052
 Polar Sport			    	70240	  325989	344299
 Polar Wave			    	71110	  134716	182287
 Polar Extreme		    	72110	  132140	151624
 Double Edge			    	74110	  26872  	30891
 Edge Extreme		    	75110	  803930	1002240
-Bear Edge			    	  76110	  159417	160541
-Bear Survival Edge  	77110	  9645	  20517
-Seeker 35			    	  78110	  131039	397919
-Seeker Extreme		  	80110	  127031	252154
-Seeker Mini				    81110	  89137	  190845
-Glacier Basic		    	82110	  24822	  217694
-Glacier Deluxe		  	83110	  98125	  145767
-Capri				        	123110	33551	  35542
-Capri				        	123140	167754	432675
-Capri				        	123150	144429	216586
-Cat Eye				       	124160	267169	510942
-Cat Eye			    	  	124180	274592	370362
-Venue				        	125110	236739	288715
-Dante				        	126150	109093	321490
-Fairway				       	127130	743708	749828
-Inferno					      128200	1164290	1243788
-Inferno					      128210	457220	488294
-Infinity			      	129110	290674	389861
-Infinity				      129130	757910	766405
-Infinity			      	129150	683514	702818
-Infinity				      129180	325941	382962
-Lux					        	130140	8527	  10032
-Pocket Gizmo		    	134120	39590  	53238
-Pocket Gizmo		    	134140	12036	  15016
-Ranger Vision		    	135110	96648  	98490
-Sam					        	136130	474466	508901
-Sam					        	136140	264833	368325
-Trendi				      	143140	31039  	188112
-TX						        144150	34026  	39376
-TX						        144170	79002	  145719
-TX						        144180	2314600	2326800
-Legend				      	145130	172894	243038
-Zodiak				      	146110	9746	  36902
-Zodiak				      	146130	20805	  39310
-Zone				        	147140	322324  363784
-Zone				        	147150	159224  422210
-Hawk Eye			      	148110	295360 	329688
-Hawk Eye			    	  148130	720766	863741
-Retro					        149120	60019	  90968
-Retro				      	  149140	589599	873842
-Retro					        149150	211882	734885
-Sky Pilot			      	152110	220170	303942
+Bear Edge			    	76110	  159417	160541
+Bear Survival Edge  		77110	  9645	  	20517
+Seeker 35			    	78110	  131039	397919
+Seeker Extreme		  		80110	  127031	252154
+Seeker Mini				    81110	  89137	  	190845
+Glacier Basic		    	82110	  24822	  	217694
+Glacier Deluxe		  		83110	  98125	  	145767
+Capri				        123110	  33551	  	35542
+Capri				        123140	  167754	432675
+Capri				        123150	  144429	216586
+Cat Eye				       	124160	  267169	510942
+Cat Eye			    	  	124180	  274592	370362
+Venue				        125110	  236739	288715
+Dante				        126150	  109093	321490
+Fairway				       	127130	  743708	749828
+Inferno					    128200	  1164290	1243788
+Inferno					    128210	  457220	488294
+Infinity			      	129110	  290674	389861
+Infinity				    129130	  757910	766405
+Infinity			      	129150	  683514	702818
+Infinity				    129180	  325941	382962
+Lux					        130140	  8527	  	10032
+Pocket Gizmo		    	134120	  39590  	53238
+Pocket Gizmo		    	134140	  12036	  	15016
+Ranger Vision		    	135110	  96648  	98490
+Sam					        136130	  474466	508901
+Sam					        136140	  264833	368325
+Trendi				      	143140	  31039  	188112
+TX						    144150	  34026  	39376
+TX						    144170	  79002	  	145719
+TX						    144180	  2314600	2326800
+Legend				      	145130	  172894	243038
+Zodiak				      	146110	  9746	  	36902
+Zodiak				      	146130	  20805	  	39310
+Zone				        147140	  322324  	363784
+Zone				        147150	  159224  	422210
+Hawk Eye			      	148110	  295360 	329688
+Hawk Eye			    	148130	  720766	863741
+Retro					    149120	  60019	  	90968
+Retro				      	149140	  589599	873842
+Retro					    149150	  211882	734885
+Sky Pilot			      	152110	  220170	303942
 */
 
 
