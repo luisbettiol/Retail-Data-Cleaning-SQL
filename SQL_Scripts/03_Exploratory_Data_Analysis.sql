@@ -8,8 +8,12 @@ Objetivo: Realizar una auditoría de volumen y valores para validar la
 consistencia de la información cargada en el modelo relacional.
 */
 
+
+
 --       1. Auditoría de Catálogos (Dimensiones)
+
 -- Verificamos la cantidad de entidades únicas en cada dimensión.
+
 SELECT 
     (SELECT COUNT(*) FROM productos) AS total_productos,
     (SELECT COUNT(*) FROM tiendas) AS total_tiendas,
@@ -22,7 +26,9 @@ SELECT
 
 
 --       2. KPIs Globales de Operación
+
 -- Resumen general de volumen de ventas, unidades y facturación total.
+
 SELECT 
     COUNT(id_venta) AS transacciones_totales,
     SUM(cantidad) AS unidades_vendidas,
@@ -37,7 +43,9 @@ Total_Transacciones		Unidades_Vendidas	  Facturacion_Total	  Venta_Promedio
 
 
 -- 			3. Analisis de Cobertura Temporal
+
 -- Verificacion del rango de Fechas del Historico de Datos
+
 SELECT 
     MIN(fecha), 
     MAX(fecha)
@@ -49,6 +57,7 @@ FROM ventas_agr;
 
 
 -- 			4. Verificacion de Productos Unicos en el Catalogo de Venta
+
 SELECT 
     COUNT(DISTINCT id_prod)
 FROM productos;
@@ -64,6 +73,7 @@ FROM productos;
 
 
 -- 			5. Total de tiendas distintas (Clientes)
+
 SELECT 
     COUNT(DISTINCT id_tienda)
 FROM tiendas;
@@ -73,6 +83,7 @@ FROM tiendas;
 
 
 -- 			6. Total de Canales de Venta (Distribucion)
+
 SELECT 
 	DISTINCT canal
 FROM canales;
@@ -92,9 +103,11 @@ Other
 
 
 -- 			7. Distribución Inicial por Canal
+
 -- 	      - Total de Transacciones por Canal de venta
 -- 	      - Total de Facturacion por Canal de venta
 --        - Porcentaje de Participacion por Canal de venta al total
+
 SELECT 
     c.canal AS canal_venta,
     COUNT(v.id_venta) AS total_transacciones,
