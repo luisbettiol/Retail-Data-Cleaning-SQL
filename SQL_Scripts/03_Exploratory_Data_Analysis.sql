@@ -18,10 +18,10 @@ SELECT
     (SELECT COUNT(*) FROM productos) AS total_productos,
     (SELECT COUNT(*) FROM tiendas) AS total_tiendas,
     (SELECT COUNT(*) FROM canales) AS total_canales;
-  /*
+/*
       Total Productos		Total Tiendas		Total Canales
       274				       	562					    12
-  */
+*/
 
 
 
@@ -36,8 +36,8 @@ SELECT
     ROUND(AVG(facturacion), 2) AS ticket_promedio_linea
 FROM ventas_agr;
 /*
-Total_Transacciones		Unidades_Vendidas	  Facturacion_Total	  Venta_Promedio
-134688					      19795947			      1251363763.15		    9290.83
+Total_Transacciones		Unidades_Vendidas		Facturacion_Total		Venta_Promedio
+134688					19795947				1251363763.15			9290.83
 */
 
 
@@ -121,12 +121,12 @@ ORDER BY total_facturacion DESC;
 /*
 RESPUESTA:
 
-CANAL			  N TRANSACCIONES		TOTAL FACTURACION	  PCT DE PARTICIPACION
-Web		  	    111014				    909471253.16		    72.68
-Telephone		  11549			      	157869786.05	    	12.62
-E-mail			  6891			      	87908957.07		    	7.03
-Sales visit		3659				      67957531.43		    	5.43
-Mail			    926					      20761811.89		    	1.66
-Special			  370				      	4514876.04		    	0.36
-Fax				    279				      	2879547.51		     	0.23
+CANAL			N TRANSACCIONES		TOTAL FACTURACION		PCT DE PARTICIPACION
+Web				111014				909471253.16			72.68
+Telephone		11549				157869786.05			12.62
+E-mail			6891				87908957.07				7.03
+Sales visit		3659				67957531.43				5.43
+Mail			926					20761811.89				1.66
+Special			370					4514876.04				0.36
+Fax				279					2879547.51				0.23
 */
