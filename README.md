@@ -18,7 +18,7 @@ Transformar un dataset crudo de retail con más de 149,000 registros en una infr
 ## 📂 Estructura del Repositorio (6 Etapas)
 El proyecto se divide en módulos que representan el ciclo de vida completo del dato:
 
-1.  **[01_Etapa_Limpieza](Retail-Data-Cleaning-SQL/SQL_Scripts/01_data_cleaning.sql):** Normalización de fechas, corrección de tipos y deduplicación.
+1.  **[01_Etapa_Limpieza](SQL_Scripts/01_data_cleaning.sql):** Normalización de fechas, corrección de tipos y deduplicación.
 2.  **[02_Etapa_Modelado](./sql_scripts/02_data_modeling.sql):** Diseño de arquitectura (PKs/FKs) y creación de la lógica de pedidos (Vista transaccional).
 3.  **[03_Analisis_Metricas](./sql_scripts/03_exploratory_data_analysis.sql):** Auditoría de volúmenes, KPIs globales y cobertura temporal.
 4.  **[04_Analisis_Negocio](./sql_scripts/04_business_performance_insights.sql):** Estacionalidad (Calendario Fiscal de Julio a Junio) y rendimiento de canales.
