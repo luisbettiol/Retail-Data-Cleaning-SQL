@@ -19,11 +19,11 @@ Transformar un dataset crudo de retail con más de 149,000 registros en una infr
 El proyecto se divide en módulos que representan el ciclo de vida completo del dato:
 
 1.  **[01_Etapa_Limpieza](./SQL_Scripts/01_Data_Cleaning.sql):** Normalización de fechas, corrección de tipos y deduplicación.
-2.  **[02_Etapa_Modelado](./sql_scripts/02_data_modeling.sql):** Diseño de arquitectura (PKs/FKs) y creación de la lógica de pedidos (Vista transaccional).
-3.  **[03_Analisis_Metricas](./sql_scripts/03_exploratory_data_analysis.sql):** Auditoría de volúmenes, KPIs globales y cobertura temporal.
-4.  **[04_Analisis_Negocio](./sql_scripts/04_business_performance_insights.sql):** Estacionalidad (Calendario Fiscal de Julio a Junio) y rendimiento de canales.
-5.  **[05_Analisis_Clientes_Tiendas](./sql_scripts/05_customer_behavior_segmentation.sql):** Matriz de segmentación, análisis de reactivación (Churn) y potencial de desarrollo.
-6.  **[06_Recomendador](./sql_scripts/06_market_basket_engine.sql):** Motor de analítica avanzada basado en Market Basket Analysis y sugerencias personalizadas.
+2.  **[02_Etapa_Modelado](./SQL_Scripts/02_Data_Modeling.sql):** Diseño de arquitectura (PKs/FKs) y creación de la lógica de pedidos (Vista transaccional).
+3.  **[03_Analisis_Metricas](./SQL_Scripts/03_Exploratory_Data_Analysis.sql):** Auditoría de volúmenes, KPIs globales y cobertura temporal.
+4.  **[04_Analisis_Negocio](./SQL_Scripts/04_Business_Performance_Insights.sql):** Estacionalidad (Calendario Fiscal de Julio a Junio) y rendimiento de canales.
+5.  **[05_Analisis_Clientes_Tiendas](./SQL_Scripts/05_Customer_Behavior_Segmentation.sql):** Matriz de segmentación, análisis de reactivación (Churn) y potencial de desarrollo.
+6.  **[06_Recomendador](./SQL_Scripts/06_Market_Basket_Engine.sql):** Motor de analítica avanzada basado en Market Basket Analysis y sugerencias personalizadas.
 
 ---
 
